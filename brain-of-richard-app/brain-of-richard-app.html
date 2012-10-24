@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>brain of richard app</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Theo Armour">
+</head>
+<body>
+<script src="http://jaanga.github.com/three.js/build/three.min.js"></script>
+<script src="http://jaanga.github.com/three.js/examples/js/controls/TrackballControls.js"></script>
+<script src='http://jaanga.github.com/three.js/examples/js/libs/stats.min.js'></script>
+<script>
+// the above scripts and these vars are in the Blogger template
+	var renderer, scene, camera, controls, stats,
+		light, geometry, material, mesh, clock = new THREE.Clock(), renderers = [];
+
+//	the animate source ccode, as below, is in the Blogger Creative Commons widget - for easy acces
+	function animate() {
+		requestAnimationFrame( animate );
+		var tim = clock.getElapsedTime() * 0.15;
+		for ( var i = 0, l = renderers.length; i < l; i++ ) {
+			var r = renderers[i];
+			r.renderer.render( r.scene, r.camera );
+			if (r.stats) { r.stats.update(); }
+			if (r.callback) { 
+				r.callback(); 
+			} else {
+				r.camera.position.x = 20 * Math.cos( tim );
+				r.camera.position.y = 20 * Math.cos( tim );
+				r.camera.position.z = 20 * Math.sin( tim );
+			}
+			r.controls.update();
+		}
+	}  
+	animate();
+</script>
+<script type='text/javascript'>
+	init();
+
+	function init() {
+
+		var sources = [
+			'http://3.bp.blogspot.com/-Ttxr7aLk_-Y/UH32d4sH1kI/AAAAAAAAFfM/I1cYYiG3RVk/s1600/1.png',
+			'http://3.bp.blogspot.com/-kxDIO3k3JVs/UH32ll2HTpI/AAAAAAAAFgk/nIlkb18XQ9I/s1600/2.png',
+			'http://3.bp.blogspot.com/-GXivQg-uu9E/UH32pzWmw0I/AAAAAAAAFhk/-UJhlGY8QCA/s1600/3.png',
+			'http://4.bp.blogspot.com/-a_nI3g8YDTw/UH32qMIB2qI/AAAAAAAAFhs/xVLTUvJUam0/s1600/4.png',
+			'http://3.bp.blogspot.com/-Rpt6s5Rr9Ro/UH32q7KJw2I/AAAAAAAAFh0/WNRsvCbSrNE/s1600/5.png',
+			'http://4.bp.blogspot.com/-8EknXDg_rgA/UH32rMfLTLI/AAAAAAAAFh8/92yb3YwHV20/s1600/6.png',
+			'http://1.bp.blogspot.com/-KnauZTgpgaQ/UH32rpnY3QI/AAAAAAAAFiE/E8lvJW9AYsw/s1600/7.png',
+			'http://2.bp.blogspot.com/-AoUn0a7ZB64/UH32sEBhFPI/AAAAAAAAFiM/eqMzQ4fkduw/s1600/8.png',
+			'http://2.bp.blogspot.com/-RsbPb2im51w/UH32sgbqQAI/AAAAAAAAFiU/RalPD12Anik/s1600/9.png',
+			'http://1.bp.blogspot.com/-2akcVieeNYE/UH32foUvJUI/AAAAAAAAFfU/uQ_pvd50cZs/s1600/10.png',
+			'http://4.bp.blogspot.com/-F_--cMBthjg/UH32gDYK5JI/AAAAAAAAFfc/YTw4eXGExVU/s1600/11.png',
+			'http://2.bp.blogspot.com/-DL2saBUeGt4/UH32gy1IHcI/AAAAAAAAFfk/Iij86fDcR4Y/s1600/12.png',
+			'http://1.bp.blogspot.com/-oJdk3oIJk30/UH32hHFkHWI/AAAAAAAAFfs/CdElN2x4dIE/s1600/13.png',
+			'http://3.bp.blogspot.com/-tKv_KZYn96g/UH32hsC7brI/AAAAAAAAFf0/9bwdqiDFRvA/s1600/14.png',
+			'http://3.bp.blogspot.com/-P5lji7cwPtQ/UH32ipdqxaI/AAAAAAAAFf8/ObkyF0g_r_U/s1600/15.png',
+			'http://3.bp.blogspot.com/-F7BCcmct97w/UH32jF_Qf7I/AAAAAAAAFgE/ZAF3ugWByII/s1600/16.png',
+			'http://2.bp.blogspot.com/-7lHaE_uOALA/UH32ju5Q1VI/AAAAAAAAFgM/J9zj2iDoxMo/s1600/17.png',
+			'http://1.bp.blogspot.com/-_Ws1BSDJHHM/UH32kTJw01I/AAAAAAAAFgU/3F4oDsq_KdM/s1600/18.png',
+			'http://1.bp.blogspot.com/-jtMP6tmXHOo/UH32lPEHUwI/AAAAAAAAFgc/uCVPDHV4aNU/s1600/19.png',
+			'http://4.bp.blogspot.com/-CN4D7lolTvg/UH32mIdfYpI/AAAAAAAAFgs/K7baCCdBPiE/s1600/20.png',
+			'http://3.bp.blogspot.com/-IJaMlSQ27Hw/UH32m-hoFAI/AAAAAAAAFg0/kEsUOouVMII/s1600/21.png',
+			'http://2.bp.blogspot.com/-FEyOmK66-Jg/UH32nY-spHI/AAAAAAAAFg8/_ARhjKyuQbg/s1600/22.png',
+			'http://2.bp.blogspot.com/-vK4_uhM-bV8/UH32nxKiUtI/AAAAAAAAFhE/_tU9K7vIryI/s1600/23.png',
+			'http://1.bp.blogspot.com/-AXwkgBjyS40/UH32oawfhKI/AAAAAAAAFhM/RZ3-HJ-hSBM/s1600/24.png',
+			'http://2.bp.blogspot.com/-5iNwvfEQBiU/UH32o_307GI/AAAAAAAAFhU/sM_Y7UX39Ck/s1600/25.png',
+			'http://1.bp.blogspot.com/-ZBTJRSeyMw8/UH32pceQQ8I/AAAAAAAAFhc/EDZNkjY5dhw/s1600/26.png'
+		];
+
+		//var d = document.getElementById('post-body-3179262127433614159');
+		d = document.body;
+
+		renderer = new THREE.WebGLRenderer( { antialias: true } );
+		renderer.setSize( 640, 320 );
+		renderer.domElement.style.border = '1px solid black';
+		d.appendChild( renderer.domElement );
+
+		scene = new THREE.Scene();
+
+		camera = new THREE.PerspectiveCamera( 40, 640 / 320, 1, 10000 );
+		camera.position.set(100, 100, 100);
+
+		controls = new THREE.TrackballControls( camera, renderer.domElement );
+
+		geometry = new THREE.PlaneGeometry( 100, 100, 1, 1 );
+		var scans = new THREE.Object3D();
+		for (var i = 1; i < 26; i++) {
+			map = THREE.ImageUtils.loadTexture( sources[i] );
+			material = new THREE.MeshBasicMaterial( { map: map, side: THREE.DoubleSide } );
+			material.opacity = 0.1;
+			material.transparent = true;
+			mesh = new THREE.Mesh( geometry, material );
+			mesh.rotation.x = 1.5708;
+			mesh.position.set(0, -30 + i * 3, 0);
+			scans.add( mesh );
+		}
+		scene.add( scans );
+
+		stats = new Stats();
+		stats.domElement.style.position = 'absolute';
+		stats.domElement.style.top = '0px';
+		stats.domElement.style.zIndex = 100;
+		d.appendChild( stats.domElement );
+
+		var callback = function() {};
+
+		renderers.push( {renderer: renderer, scene: scene, camera: camera, controls: controls, stats: stats, callback: callback} );
+	}
+</script>
+</body>
+</html>

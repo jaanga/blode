@@ -1,7 +1,7 @@
 var list = {
 	'jaanga.githb.com': {
 		'Blode': [
-			[ 'webgl-on-chromebook.html','webgl-on-chromebook.html' ],
+			[ 'WebGL on Chromebook','webgl-on-chromebook/webgl-on-chromebook.html' ],
 			[ 'Brain of Richard App', 'brain-of-richard-app/brain-of-richard-app' ],
 			[ 'We have Callbacks', 'we-have-callbacks/index' ],
 			[ "Up and Running",'up-and-running/up-and-running'],

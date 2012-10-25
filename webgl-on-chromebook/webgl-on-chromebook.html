@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>webgl-on-chromebook</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Theo Armour">
+</head>
+<body>
+<img border="0" height="320" src="http://3.bp.blogspot.com/-fob6Re7cR1w/UIihpJfWZ2I/AAAAAAAAFjs/5bM0ZWrh3C0/s320/webgl-chromebook.jpg" width="320" />
+<script src="http://jaanga.github.com/three.js/build/three.min.js"></script>
+<script src="http://jaanga.github.com/three.js/examples/js/controls/TrackballControls.js"></script>
+<script src='http://jaanga.github.com/three.js/examples/js/libs/stats.min.js'></script>
+<script>
+// the above scripts and these vars are in the Blogger template
+    var renderer, scene, camera, controls, stats,
+		light, geometry, material, mesh, clock = new THREE.Clock(), renderers = [];
+
+//	the animate source ccode, as below, is in the Blogger Creative Commons widget - for easy acces
+	function animate() {
+		requestAnimationFrame( animate );
+		var tim = clock.getElapsedTime() * 0.15;
+		for ( var i = 0, l = renderers.length; i < l; i++ ) {
+			var r = renderers[i];
+			r.renderer.render( r.scene, r.camera );
+			if (r.stats) { r.stats.update(); }
+			if (r.callback) { 
+				r.callback(); 
+			} else {
+				r.camera.position.x = 20 * Math.cos( tim );
+				r.camera.position.y = 20 * Math.cos( tim );
+				r.camera.position.z = 20 * Math.sin( tim );
+			}
+			r.controls.update();
+		}
+	}  
+	animate();
+</script>
+<script type='text/javascript'>
+	init();
+
+	function init() {
+		// d = document.getElementById('post-body-7520199647430558687');
+		var d = document.body;
+		d.style.textAlign = 'center';
+		d.style.width = '640px';
+		
+		renderer = new THREE.WebGLRenderer( { antialias: true } );
+		renderer.setSize( 640, 320 );
+		renderer.domElement.style.backgroundColor = 'transparent';
+		renderer.domElement.style.border = '5px solid black';
+		renderer.domElement.style.position = 'absolute';
+		renderer.domElement.style.left = '0px';
+		d.appendChild( renderer.domElement );
+
+		scene = new THREE.Scene();
+
+		camera = new THREE.PerspectiveCamera( 40, 640 / 320, 1, 10000 );
+		camera.position.set( 50, 50, 50);
+
+		controls = new THREE.TrackballControls( camera, renderer.domElement );
+
+		var map = THREE.ImageUtils.loadTexture('http://3.bp.blogspot.com/-fob6Re7cR1w/UIihpJfWZ2I/AAAAAAAAFjs/5bM0ZWrh3C0/s320/webgl-chromebook.jpg');
+		material = new THREE.MeshBasicMaterial({map: map});
+		geometry = new THREE.CubeGeometry( 50, 50, 50 );
+		mesh = new THREE.Mesh( geometry, material );
+		mesh.position.set( Math.random() * 40 - 20, Math.random() * 40, Math.random() * 40 - 20 );
+		mesh.rotation.set( Math.random() * 1.5807, Math.random() * 1.5807, Math.random() * 1.5807 ); 
+	    scene.add( mesh );
+
+		stats = new Stats();
+		stats.domElement.style.position = 'absolute';
+		stats.domElement.style.top = '0px';
+		stats.domElement.style.zIndex = 100;
+		d.appendChild( stats.domElement );
+
+		var callback = function() {
+			var tim = clock.getElapsedTime() * 0.15;
+			mesh.position.x = 50 * Math.cos( tim  );
+			mesh.position.y = 50 * Math.cos( tim  );
+			mesh.position.z = 50 * Math.sin( tim );
+			mesh.rotation.x += 0.02;
+		};
+
+		renderers.push( {renderer: renderer, scene: scene, camera: camera, controls: controls, stats: stats, callback: callback} );
+	}
+</script>
+</body>
+</html>

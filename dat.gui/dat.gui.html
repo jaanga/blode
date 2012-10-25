@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>webgl-on-chromebook</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Theo Armour">
+</head>
+<body>
+<script src="http://jaanga.github.com/three.js/build/three.min.js"></script>
+<script src="http://jaanga.github.com/three.js/examples/js/controls/TrackballControls.js"></script>
+<script src='http://jaanga.github.com/three.js/examples/js/libs/stats.min.js'></script>
+<script src='http://dat-gui.googlecode.com/git/build/dat.gui.min.js'/></script>
+<script>
+// the above scripts and these vars are in the Blogger template
+    var renderer, scene, camera, controls, stats,
+		light, geometry, material, mesh, clock = new THREE.Clock(), renderers = [];
+
+//	the animate source ccode, as below, is in the Blogger Creative Commons widget - for easy acces
+	function animate() {
+		requestAnimationFrame( animate );
+		var tim = clock.getElapsedTime() * 0.15;
+		for ( var i = 0, l = renderers.length; i < l; i++ ) {
+			var r = renderers[i];
+			r.renderer.render( r.scene, r.camera );
+			if (r.stats) { r.stats.update(); }
+			if (r.callback) { 
+				r.callback(); 
+			} else {
+				r.camera.position.x = 20 * Math.cos( tim );
+				r.camera.position.y = 20 * Math.cos( tim );
+				r.camera.position.z = 20 * Math.sin( tim );
+			}
+			r.controls.update();
+		}
+	}  
+	animate();
+</script>
+<script type='text/javascript'>
+init();
+
+function init() {
+  //d = document.getElementById('post-body-6472318144316037563');
+  d = document.body;
+// console.log('hi ', d);
+  renderer = new THREE.WebGLRenderer( { antialias: true } );
+  renderer.setSize( 640, 320 );
+  renderer.shadowMapEnabled = true;
+  renderer.shadowMapSoft = true;
+  renderer.domElement.style.border = '5px solid black';
+  renderer.domElement.style.backgroundColor = '#000';
+  //renderer.domElement.style.font = '12px bold monospace';
+  //renderer.domElement.style.textAlign = 'center';
+  d.appendChild( renderer.domElement );
+
+  var light, geometry, color, material, mesh, box1, box2, box3;
+  var callback = function() {  
+    var tim = clock.getElapsedTime() * 0.7;
+     box3.position.x = -30 + 10 * Math.sin(tim);
+     box3.position.y = 20 + 10 * Math.cos(1.5798 + tim);
+     box3.position.z = 0 + 10 * Math.cos(1.5798 + tim) * Math.cos( tim); 
+};
+
+  scene = new THREE.Scene();
+
+  camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+  camera.position.set(100, 100, -100);
+
+  controls = new THREE.TrackballControls( camera, renderer.domElement );
+  
+  light = new THREE.AmbientLight( 0xffffff );
+  scene.add( light );  
+  
+  light = new THREE.SpotLight( 0xffffff );
+  light.position.set( -100, 100, -100 );
+  light.castShadow = true;
+  scene.add( light );
+
+  color = Math.random() * 0xffffff;
+  material = new THREE.MeshBasicMaterial( {color: color, ambient: color, side: THREE.DoubleSide } );
+  geometry = new THREE.PlaneGeometry( 150, 150 );
+  mesh = new THREE.Mesh( geometry, material );
+  // mesh.position.set(0, 0, 0);
+  mesh.rotation.x = -1.5708;
+  mesh.receiveShadow = true;
+  scene.add( mesh );
+
+  geometry = new THREE.CubeGeometry( 20, 30, 20 );
+  color = Math.random() * 0xffffff;
+  material = new THREE.MeshPhongMaterial( {color: color, ambient: color, transparent: true} );
+  box1 = new THREE.Mesh( geometry, material );
+  box1.castShadow = true;
+  box1.position.set(0, 20, 0);
+  scene.add( box1 );
+
+  var box2color = Math.random() * 0xffffff;
+  material = new THREE.MeshPhongMaterial( {color: box2color, ambient: box2color } );
+  box2 = new THREE.Mesh( geometry, material );
+  box2.castShadow = true;
+  box2.position.set(30, 20, 0);
+  scene.add( box2 );
+
+  color = Math.random() * 0xffffff;
+  material = new THREE.MeshPhongMaterial( {color: color, ambient: color } );
+  box3 = new THREE.Mesh( geometry, material );
+  box3.castShadow = true;
+  box3.position.set(-30, 20, 0);
+  scene.add( box3 );
+  
+  //stats = new Stats();
+  //stats.domElement.style.position = 'absolute';
+  //stats.domElement.style.top = '0px';
+  //stats.domElement.style.zIndex = 100;
+  //d.appendChild( stats.domElement );  
+
+  var box1ConfigData = function() {
+  this.scaleX = 1.0;
+  this.scaleY = 1.0;
+  this.scaleZ = 1.0;
+  this.wireframe = false;
+  this.opacity = 'full';
+  this.doScale = function() {
+  callback = function() {
+    var tim = clock.getElapsedTime() * 0.7;
+    box1.scale.x = 1 + Math.sin(tim);
+    box1.scale.y = 1 + Math.cos(1.5798 + tim);
+    box1.scale.z = 1 + Math.cos(1.5798 + tim) * Math.cos( tim);
+  }
+  };
+  };
+  
+  var box2ConfigData = function() {
+   this.rotationX = 0;
+   this.rotationY = 0;
+   this.rotationZ = 0;
+   this.visible = true;
+   this.material = 'phong';
+   this.doRotation = function() {
+    callback = function() {
+     var tim = clock.getElapsedTime() * 0.7;
+     box2.rotation.x = 1 + Math.sin(tim);
+     box2.rotation.y = 1 + Math.cos(1.5798 + tim);
+     box2.rotation.z = 1 + Math.cos(1.5798 + tim) * Math.cos( tim);
+    }
+   };   
+  };
+
+  var box3ConfigData = function() {
+   this.positionX = -30.0;
+   this.positionY = 20.0;
+   this.positionZ = 0;
+   this.castShadow = true;
+   this.color1 = color;
+   this.doPosition = function() {
+    callback = function() {
+     var tim = clock.getElapsedTime() * 0.7;
+     box3.position.x = -30 + 10 * Math.sin(tim);
+     box3.position.y = 20 + 10 * Math.cos(1.5798 + tim);
+     box3.position.z = 0 + 10 * Math.cos(1.5798 + tim) * Math.cos( tim);
+    }
+   };      
+  }
+
+ var  box3Config = new box3ConfigData();
+ var box3Gui = new dat.GUI();
+  
+ var guiBox3 = box3Gui.addFolder('Box 3 ~ Position');
+ guiBox3 .open();
+guiBox3.add( box3Config, 'positionX', -70, -15 ).onChange( function(){
+  box3.position.x = ( box3Config.positionX );
+} );
+guiBox3.add( box3Config, 'positionY', 0, 40 ).onChange( function() {
+  box3.position.y = ( box3Config.positionY );
+} );  
+guiBox3.add( box3Config, 'positionZ', -50, 50 ).onChange( function() {
+  box3.position.z = ( box3Config.positionZ );
+} ); 
+guiBox3.add( box3Config, 'castShadow', false ).onChange( function() {
+  box3.castShadow = box3Config.castShadow;
+} ); 
+guiBox3.addColor( box3Config, 'color1', color ).onChange( function() {
+// console.log( box3Config.color1 );
+  box3.material.color.setHex( dec2hex(box3Config.color1) ); 
+  box3.material.ambient.setHex( dec2hex(box3Config.color1) ); 
+} ); 
+guiBox3.add( box3Config, 'doPosition' );
+
+
+
+var  box2Config = new box2ConfigData();
+var box2Gui = new dat.GUI();
+  
+var guiBox2 = box2Gui.addFolder('Box 2 ~ Rotation');
+guiBox2.open();
+guiBox2.add( box2Config, 'rotationX', -3.14, 3.14).step(0.01).onChange( function(){
+  box2.rotation.x = ( box2Config.rotationX );
+} );
+guiBox2.add( box2Config, 'rotationY', -3.14, 3.14).step(0.01).onChange( function() {
+  box2.rotation.y = ( box2Config.rotationY );
+} );  
+guiBox2.add( box2Config, 'rotationZ', -3.14, 3.14 ).onChange( function() {
+  box2.rotation.z = ( box2Config.rotationZ );
+} ); 
+guiBox2.add( box2Config, 'visible', false ).onChange( function() {
+  box2.visible = box2Config.visible;
+} ); 
+guiBox2.add( box2Config, 'material', [ 'normal','basic','phong' ] ).onChange( function() {
+// console.log( box2Config.material );
+  if ( box2Config.material === 'normal' ) {
+    box2.material = new THREE.MeshNormalMaterial();
+  } else if ( box2Config.material === 'basic' ) {
+    box2.material = new THREE.MeshBasicMaterial( {color: box2color } );
+  } else if ( box2Config.material === 'phong' ) {
+    box2.material = new THREE.MeshPhongMaterial( {color: box2color, ambient: box2color } );
+}
+} );
+guiBox2.add( box2Config, 'doRotation' );
+
+var  box1Config = new box1ConfigData(  );
+var box1Gui = new dat.GUI( );
+var guiBox1 = box1Gui.addFolder('Box 1 ~ Scale');
+guiBox1.open();
+guiBox1.add( box1Config, 'scaleX', 0, 5 ).step(.01).onChange( function(){
+   box1.scale.x = ( box1Config.scaleX );
+} );
+guiBox1.add( box1Config, 'scaleY', 0, 10 ).onChange( function() {
+   box1.scale.y = ( box1Config.scaleY );
+} );  
+guiBox1.add( box1Config, 'scaleZ', 0, 10 ).onChange( function() {
+   box1.scale.z = ( box1Config.scaleZ );
+} ); 
+
+guiBox1.add( box1Config, 'wireframe', false ).onChange( function() {
+   box1.material.wireframe = box1Config.wireframe;
+} ); 
+guiBox1.add( box1Config, 'opacity', [ 'quarter','half','three-quarters','full' ] ).onChange( function() {
+   //console.log( box2Config.opacity );
+   if ( box1Config.opacity === 'quarter' ) {
+    box1.material.opacity = 0.25;
+   } else if ( box1Config.opacity === 'half' ) {
+    box1.material.opacity = 0.5;    
+   } else if ( box1Config.opacity === 'three-quarters' ) {
+    box1.material.opacity = 0.75;
+   } else if ( box1Config.opacity === 'full' ) {
+    box1.material.opacity = 1.0;
+   }
+} );
+guiBox1.add( box1Config, 'doScale' );  
+
+function dec2hex(i) {
+  var result = "0x000000";
+  if (i >= 0 && i <= 15) { result = "0x00000" + i.toString(16); }
+  else if (i >= 16 && i <= 255) { result = "0x0000" + i.toString(16); }
+  else if (i >= 256 && i <= 4095) { result = "0x000" + i.toString(16); }
+  else if (i >= 4096 && i <= 65535) { result = "0x00" + i.toString(16); }
+  else if (i >= 65535 && i <= 1048575) { result = "0x0" + i.toString(16); }
+  else if (i >= 1048575 ) { result = '0x' + i.toString(16); }
+  //console.log(result);
+ return result
+} 
+
+renderers.push( {renderer: renderer, scene: scene, camera: camera, controls: controls, callback: callback} ); 
+}
+</script>
+</body>
+</html>

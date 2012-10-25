@@ -1,6 +1,7 @@
 var list = {
 	'jaanga.githb.com': {
 		'Blode': [
+			[ 'DAT.GUI User Controls','dat.gui/dat.gui' ],
 			[ 'WebGL on Chromebook','webgl-on-chromebook/webgl-on-chromebook' ],
 			[ 'Brain of Richard App', 'brain-of-richard-app/brain-of-richard-app' ],
 			[ 'We have Callbacks', 'we-have-callbacks/index' ],

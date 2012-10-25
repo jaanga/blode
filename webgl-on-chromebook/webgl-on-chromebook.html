@@ -6,7 +6,6 @@
 <meta name="author" content="Theo Armour">
 </head>
 <body>
-<img border="0" height="320" src="http://3.bp.blogspot.com/-fob6Re7cR1w/UIihpJfWZ2I/AAAAAAAAFjs/5bM0ZWrh3C0/s320/webgl-chromebook.jpg" width="320" />
 <script src="http://jaanga.github.com/three.js/build/three.min.js"></script>
 <script src="http://jaanga.github.com/three.js/examples/js/controls/TrackballControls.js"></script>
 <script src='http://jaanga.github.com/three.js/examples/js/libs/stats.min.js'></script>
@@ -41,15 +40,18 @@
 	function init() {
 		// d = document.getElementById('post-body-7520199647430558687');
 		var d = document.body;
+		d.style.margin = '0 auto';
 		d.style.textAlign = 'center';
 		d.style.width = '640px';
 		
 		renderer = new THREE.WebGLRenderer( { antialias: true } );
 		renderer.setSize( 640, 320 );
+		
 		renderer.domElement.style.backgroundColor = 'transparent';
+		renderer.domElement.style.background = '#ffffff url(http://3.bp.blogspot.com/-fob6Re7cR1w/UIihpJfWZ2I/AAAAAAAAFjs/5bM0ZWrh3C0/s320/webgl-chromebook.jpg) no-repeat center top';
 		renderer.domElement.style.border = '5px solid black';
-		renderer.domElement.style.position = 'absolute';
-		renderer.domElement.style.left = '0px';
+		//renderer.domElement.style.position = 'absolute';
+		//renderer.domElement.style.left = '0px';
 		d.appendChild( renderer.domElement );
 
 		scene = new THREE.Scene();
@@ -60,7 +62,9 @@
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
 		var map = THREE.ImageUtils.loadTexture('http://3.bp.blogspot.com/-fob6Re7cR1w/UIihpJfWZ2I/AAAAAAAAFjs/5bM0ZWrh3C0/s320/webgl-chromebook.jpg');
-		material = new THREE.MeshBasicMaterial({map: map});
+		material = new THREE.MeshBasicMaterial({ map: map });
+		material.opacity = 0.3;
+		material.transparent = true;
 		geometry = new THREE.CubeGeometry( 50, 50, 50 );
 		mesh = new THREE.Mesh( geometry, material );
 		mesh.position.set( Math.random() * 40 - 20, Math.random() * 40, Math.random() * 40 - 20 );
@@ -75,9 +79,10 @@
 
 		var callback = function() {
 			var tim = clock.getElapsedTime() * 0.15;
-			mesh.position.x = 50 * Math.cos( tim  );
-			mesh.position.y = 50 * Math.cos( tim  );
-			mesh.position.z = 50 * Math.sin( tim );
+			mesh.position.x = 20 * Math.cos( tim  );
+			mesh.position.y = 20 * Math.cos( tim  );
+			mesh.position.z = 20 * Math.sin( tim );
+			material.opacity = Math.abs(Math.sin( tim ));
 			mesh.rotation.x += 0.02;
 		};
 

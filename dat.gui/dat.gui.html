@@ -53,11 +53,13 @@ function init() {
   d.appendChild( renderer.domElement );
 
   var light, geometry, color, material, mesh, box1, box2, box3;
+  
+  
   var callback = function() {  
-    var tim = clock.getElapsedTime() * 0.7;
-     box3.position.x = -30 + 10 * Math.sin(tim);
-     box3.position.y = 20 + 10 * Math.cos(1.5798 + tim);
-     box3.position.z = 0 + 10 * Math.cos(1.5798 + tim) * Math.cos( tim); 
+   // var tim = clock.getElapsedTime() * 0.7;
+   //  box3.position.x = -30 + 10 * Math.sin(tim);
+   //  box3.position.y = 20 + 10 * Math.cos(1.5798 + tim);
+   //  box3.position.z = 0 + 10 * Math.cos(1.5798 + tim) * Math.cos( tim); 
 };
 
   scene = new THREE.Scene();
@@ -135,6 +137,7 @@ function init() {
    this.visible = true;
    this.material = 'phong';
    this.doRotation = function() {
+   
     callback = function() {
      var tim = clock.getElapsedTime() * 0.7;
      box2.rotation.x = 1 + Math.sin(tim);

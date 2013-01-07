@@ -1,5 +1,5 @@
 var list = {
-	'jaanga.githb.com': {
+	'jaanga.github.com': {
 		'Blode': [
 			[ 'Code-Editor inside Blogger','code-editor-inside-blogger/code-editor-inside-blogger' ],
 			[ 'DAT.GUI User Controls','dat.gui/dat.gui' ],

@@ -102,8 +102,8 @@
 			var panel = document.getElementById( 'panel' );
 			var viewer = document.getElementById( 'viewer' );
 
-			//var html = '<h1><a href="http://threejs.org">three.js</a><span style="font-size: 50%; vertical-align: super;"> r' + REVISION + '</span></h1>';
-			var html = '';
+			var html = '<h1><a href="http://threejs.org">three.js</a><span style="font-size: 50%; vertical-align: super;"> r' + REVISION + '</span></h1>';
+			// var html = '';
 			for ( var section in list ) {
 
 				html += '<h2>' + section + '</h2>';
@@ -133,7 +133,8 @@
 			}
 
 			panel.innerHTML += html;
-
+			viewer.innerHTML = 'howdy';
+			
 			// Page loading
 
 			function goTo( section, category, name ) {
@@ -155,7 +156,8 @@
 
 			window.addEventListener( 'hashchange', goToHash, false );
 
-			if ( window.location.hash.length > 0 ) goToHash();
+			// if ( window.location.hash.length > 0 ) goToHash();
+			goTo('jaanga.githb.com','Blode','DAT.GUI User Controls');
 
 		</script>
 	</body>

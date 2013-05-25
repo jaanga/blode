@@ -1,7 +1,7 @@
 var list = {
 	'jaanga.github.com': {
 		'Blode': [
-			[ 'Code-Editor inside Blogger','code-editor-inside-blogger/code-editor-inside-blogger' ],
+			[ 'Code Editor inside Blogger','code-editor-inside-blogger/code-editor-inside-blogger' ],
 			[ 'DAT.GUI User Controls','dat.gui/dat.gui' ],
 			[ 'WebGL on Chromebook','webgl-on-chromebook/webgl-on-chromebook' ],
 			[ 'Brain of Richard App', 'brain-of-richard-app/brain-of-richard-app' ],

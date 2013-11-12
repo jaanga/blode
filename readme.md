@@ -9,5 +9,5 @@ Just a place holder the the BLog cODE...
 
 ## Source Code
 
-<http://github.com/jaanga/blode/>
+<https://github.com/jaanga/blode/>
 

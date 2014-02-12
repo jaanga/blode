@@ -5,6 +5,7 @@ Just a place holder for the [Jaanga]( http://jaanga.com ) **BL**og c**ODE**...
 
 ## Live Demos
 
+[Canvas and WebGL Lines Compared]( canvas-webgl-lines-compared/canvas-webgl-lines-compared.html )  
 [Code Editor inside Blogger]( code-editor-inside-blogger/code-editor-inside-blogger )  
 [DAT.GUI User Controls]( dat.gui/dat.gui )  
 [WebGL on Chromebook]( webgl-on-chromebook/webgl-on-chromebook)  

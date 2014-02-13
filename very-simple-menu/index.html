@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta name=viewport content=width=device-width>
+<meta charset=utf-8>
+</head>
+<body>
+<script>
+// Theo Armour ~ 2014-02-12
+
+	var content;
+
+	init();
+
+	function init() {
+
+// Styles for the doc
+		var css = document.body.appendChild( document.createElement('style') );
+		css.innerHTML = 'body { font: normal 12pt sans-serif; margin: 0; overflow: hidden; }';
+
+//Styles for menu and content
+		var basics = 'border: 3px double #eee; overflow-x: hidden; overflow-y: auto; padding: 10px; position: absolute; ';
+		var horizontalsContent = ' left: 300px; margin: auto; max-width: 900px; min-width: 700px; right: 0; width: 100%; ';
+		var horizontalsMenu = 'left: 10px; width: 200px; ';
+		var verticals = ' height: ' + ( window.innerHeight * 0.88 ) + 'px; top: 60px; ';
+
+// Menu panel
+		var menu = document.body.appendChild( document.createElement( 'div' ) );
+		menu.style.cssText = basics + horizontalsMenu + verticals ;
+		menu.innerHTML = requestFile( 'menu.html' ) ;
+
+// content panel
+		content = document.body.appendChild( document.createElement( 'div' ) );
+		content.style.cssText = basics + horizontalsContent + verticals ;
+
+// Decide what file to display
+		if ( !location.hash ) {
+			displayContent( 'content-abc', abc );
+		} else {
+			displayContent( location.hash.substr(1), null );
+		}
+	}
+
+	function displayContent( fname, element ) {
+
+// Fetch and show the content file
+		content.innerHTML = requestFile( fname + '.html' );
+
+// Update window title to match H1 of content file
+		document.title = content.innerHTML.match( /<h1(.*?)>(.*?)<\/h1>/ )[2];
+
+// Reset background color to all menu items
+		var paragraphs = document.getElementsByTagName('p');
+
+		for (var i = 0, len = paragraphs.length; i < len; i++) {
+			paragraphs[i].style.backgroundColor = '';
+		}
+
+// Highlight current menu item
+		if ( !!element ) {
+			element.style.backgroundColor = '#edd';
+
+// Update URL hash
+			if ( element === abc) {
+				history.pushState( '', document.title, window.location.pathname );
+			} else {
+				location.hash = fname;
+			}
+		}
+	}
+
+// Fetch a file
+	function requestFile( fname ) {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open( 'GET', fname, false );
+		xmlHttp.send( null );
+		return xmlHttp.responseText;
+	};
+
+</script>
+</body>
+</html>

@@ -6,12 +6,12 @@ Just a place holder for the [Jaanga]( http://jaanga.com ) **BL**og c**ODE**...
 ## Live Demos
 
 [Canvas and WebGL Lines Compared]( canvas-webgl-lines-compared/canvas-webgl-lines-compared.html )  
-[Code Editor inside Blogger]( code-editor-inside-blogger/code-editor-inside-blogger )  
-[DAT.GUI User Controls]( dat.gui/dat.gui )  
-[WebGL on Chromebook]( webgl-on-chromebook/webgl-on-chromebook)  
-[Brain of Richard App]( brain-of-richard-app/brain-of-richard-app )  
-[We have Callbacks]( we-have-callbacks/index ) 
-[Up and Running]( up-and-running/up-and-running)  
+[Code Editor inside Blogger]( code-editor-inside-blogger/code-editor-inside-blogger.html )  
+[DAT.GUI User Controls]( dat.gui/dat.gui.html )  
+[WebGL on Chromebook]( webgl-on-chromebook/webgl-on-chromebook.html)  
+[Brain of Richard App]( brain-of-richard-app/brain-of-richard-app.html )  
+[We have Callbacks]( we-have-callbacks/index.html )  
+[Up and Running]( up-and-running/up-and-running.html )  
 [Now with Animation]( now-with-animation/index.html )  
 
 

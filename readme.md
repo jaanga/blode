@@ -5,7 +5,7 @@ Just a place holder for the [Jaanga]( http://jaanga.com ) **BL**og c**ODE**...
 
 ## Live Demos
 
-[Very Simple Menu]( very-simple-menu/r1/index.html )
+[Very Simple Menu]( very-simple-menu/ )
 
 * Reads 'menu.html' and displays its HTML as the left side menu panel
 * Menu file may contain links to any number of HTML files that display in right side content panel

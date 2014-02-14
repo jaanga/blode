@@ -5,6 +5,13 @@ Just a place holder for the [Jaanga]( http://jaanga.com ) **BL**og c**ODE**...
 
 ## Live Demos
 
+[Very Simple Menu]( very-simple-menu/r1/index.html )
+
+* Reads 'menu.html' and displays its HTML as the left side menu panel
+* Menu file may contain links to any number of HTML files that display in right side content panel
+* Designed to be 'as simple as possible, but not too simple.'
+
+
 [Canvas and WebGL Lines Compared]( canvas-webgl-lines-compared/canvas-webgl-lines-compared.html )  
 [Code Editor inside Blogger]( code-editor-inside-blogger/code-editor-inside-blogger.html )  
 [DAT.GUI User Controls]( dat.gui/dat.gui.html )  
@@ -32,3 +39,11 @@ For details see [Jaanga Copyright and License](http://jaanga.github.io/libs/jaan
 
 
 ## Change Log
+
+2014-02-13 ~ Theo
+
+* Added Very Simple Menu
+
+2014-02-12 ~ Theo
+
+* Added docBrowesr menu

@@ -6,7 +6,7 @@
 </head>
 <body>
 <script>
-// Theo Armour ~ 2014-02-12
+// Theo Armour ~ 2014-02-13 ~ MIT License
 
 	var content;
 
@@ -29,17 +29,18 @@
 		menu.style.cssText = basics + horizontalsMenu + verticals ;
 		menu.innerHTML = requestFile( 'menu.html' ) ;
 
-// content panel
+// Content panel
 		content = document.body.appendChild( document.createElement( 'div' ) );
 		content.style.cssText = basics + horizontalsContent + verticals ;
 
-// Decide what file to display
+// file to display if no hah or with hash
 		if ( !location.hash ) {
 			displayContent( 'content-abc', abc );
 		} else {
 			displayContent( location.hash.substr(1), null );
 		}
 	}
+
 
 	function displayContent( fname, element ) {
 
@@ -75,7 +76,7 @@
 		xmlHttp.open( 'GET', fname, false );
 		xmlHttp.send( null );
 		return xmlHttp.responseText;
-	};
+	}
 
 </script>
 </body>

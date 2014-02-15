@@ -6,7 +6,7 @@ Canvas and WebGL Lines Compared Read Me
 There is an `iframe` here. It is not visible when viewed on github.com/jaanga. To view, please go to jaanga.github.io. See 'Project Links' just below.
 </iframe>
 
-Run the demo: [ Very Simple Menu]( http://jaanga.github.io/blode/very-simple-menu/r1/index.html )
+Run the demo: [ Canvas and WebGL Lines Compared]( http://jaanga.github.io/blode/canvas-webgl-lines-compared/r1/canvas-webgl-lines-compared.html )
 
 ### Concept
 
@@ -15,8 +15,8 @@ Run the demo: [ Very Simple Menu]( http://jaanga.github.io/blode/very-simple-men
 
 You have two ways of viewing the files in the Jaanga repositories:  
 
-* Web page hosted on GitHub: [jaanga.github.io]( http://jaanga.github.io/blode/very-simple-menu "view the files as apps." )  <input value="<< You are now probably here." size=28 style="font:bold 12pt monospace;border-width:0;" >  
-* Source code on GitHub: [github.com/jaanga]( https://github.com/jaanga/blode/tree/gh-pages/very-simple-menu "View the files as source code." )  <scan style=display:none ><< You are now probably here.</scan>
+* Web page hosted on GitHub: [jaanga.github.io]( http://jaanga.github.io/blode/canvas-webgl-lines-compared/ "view the files as apps." )  <input value="<< You are now probably here." size=28 style="font:bold 12pt monospace;border-width:0;" >  
+* Source code on GitHub: [github.com/jaanga]( https://github.com/jaanga/blode/tree/gh-pages/canvas-webgl-lines-compared "View the files as source code." )  <scan style=display:none ><< You are now probably here.</scan>
 
 ### Notes
 

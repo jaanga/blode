@@ -1,22 +1,28 @@
 Very Simple Menu Read Me
 ========================
 
-## Live Demo
+### Live Demo
 <iframe src="http://jaanga.github.io/blode/very-simple-menu/r1/index.html" width=100% height=500px class='overview' >
 There is an `iframe` here. It is not visible when viewed on github.com/jaanga. To view, please go to jaanga.github.io. See 'Project Links' just below.
 </iframe>
 
 
-## Concept
-Provide sample code for a very simple two panel menu and content system where both the menu are called from external HTML files at runtime.
+### Concept
+Provide sample code for a very simple two panel menu and content system where both the menu and content files are called from external HTML files at runtime.
 
 
-## Project Links
+### Project Links
 
 You have two ways of viewing the files in the Jaanga repositories:  
 
 * Web page hosted on GitHub: [jaanga.github.io]( http://jaanga.github.io/blode/very-simple-menu "view the files as apps." )  <input value="<< You are now probably here." size=28 style="font:bold 12pt monospace;border-width:0;" >  
 * Source code on GitHub: [github.com/jaanga]( https://github.com/jaanga/blode/tree/gh-pages/very-simple-menu "View the files as source code." )  <scan style=display:none ><< You are now probably here.</scan>
+
+### Notes
+
+The HTML and the CSS are created using JavaScript. Writing in one language is simpler than writing in three languages.
+
+
 
 
 ### Copyright and License

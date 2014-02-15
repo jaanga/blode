@@ -1,15 +1,14 @@
-Very Simple Menu Read Me
-========================
+Canvas and WebGL Lines Compared Read Me
+=======================================
 
 ### Live Demo
-<iframe src="http://jaanga.github.io/blode/very-simple-menu/r1/index.html" width=100% height=500px class='overview' >
+<iframe src="http://jaanga.github.io/blode/canvas-webgl-lines-compared/r1/canvas-webgl-lines-compared.html" width=100% height=500px class='overview' >
 There is an `iframe` here. It is not visible when viewed on github.com/jaanga. To view, please go to jaanga.github.io. See 'Project Links' just below.
 </iframe>
 
 Run the demo: [ Very Simple Menu]( http://jaanga.github.io/blode/very-simple-menu/r1/index.html )
 
 ### Concept
-Provide sample code for a very simple two panel menu and content system where both the menu and content files are called from external HTML files at runtime.
 
 
 ### Project Links
@@ -20,13 +19,6 @@ You have two ways of viewing the files in the Jaanga repositories:
 * Source code on GitHub: [github.com/jaanga]( https://github.com/jaanga/blode/tree/gh-pages/very-simple-menu "View the files as source code." )  <scan style=display:none ><< You are now probably here.</scan>
 
 ### Notes
-
-The HTML and the CSS are created using JavaScript. Writing in one language is simpler than writing in three languages.
-
-The code is generous horizontally and stingy vertically. Most monitors are more wide than high.
-
-Stye sheet items are in alphabetical order. Is there a better order?
-
 
 
 ### Copyright and License
@@ -40,8 +32,4 @@ This repository is at an early and volatile stage. Not all licensing requirement
 
 2014-02-14 ~ 
 
-* Revising the CSS
-
-2014-02-12 and before ~ Theo
-
-* Preliminary drafts 
+* R1 added

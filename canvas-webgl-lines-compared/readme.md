@@ -9,7 +9,7 @@ There is an `iframe` here. It is not visible when viewed on github.com/jaanga. T
 Run the demo: [ Canvas and WebGL Lines Compared]( http://jaanga.github.io/blode/canvas-webgl-lines-compared/r1/canvas-webgl-lines-compared.html )
 
 ### Concept
-
+Compare the same API calls in the Canvas and WebGL rendrerers.
 
 ### Project Links
 

@@ -11,6 +11,13 @@ Run the demo: [ Very Simple Menu]( http://jaanga.github.io/blode/very-simple-men
 ### Concept
 Provide sample code for a very simple two panel menu and content system where both the menu and content files are called from external HTML files at runtime.
 
+### Features
+
+* Reads 'menu.html' and displays it as HTML in the left side menu panel
+* Menu file may contain links to any number of HTML files that display in right side content panel
+* Designed to be 'as simple as possible, but not too simple.'
+* See the blog post: [Very Simple Menu R1]( http://www.jaanga.com/2014/02/very-simple-menu-r1.html )
+
 
 ### Project Links
 

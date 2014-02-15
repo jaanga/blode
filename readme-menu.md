@@ -10,14 +10,11 @@
 	<a href=JavaScript:displayPage("very-simple-menu/readme.md",vsm); >Very Simple Menu Read Me</a>
 </p>
 
-
-<!--
 <p id=def >
-	<a href=JavaScript:displayPage("test-folder-def/readme.md",def); >test-folder-def Read Me</a>
+	<a href=JavaScript:displayPage("canvas-webgl-lines-compared/readme.md",def); >Canvas and WebGL Lines Compared Read Me</a>
 </p>
 
-
-
+<!--
 
 <p id=te >
 	<a href=JavaScript:displayPage("technics.md",te); >Technics</a>

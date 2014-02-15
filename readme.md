@@ -5,14 +5,14 @@ Just a place holder for the [Jaanga]( http://jaanga.com ) **BL**og c**ODE**...
 
 ## Live Demos
 
-[Very Simple Menu]( very-simple-menu/ )
+[Very Simple Menu]( very-simple-menu/index.html )
 
 * Reads 'menu.html' and displays it as HTML in the left side menu panel
 * Menu file may contain links to any number of HTML files that display in right side content panel
 * Designed to be 'as simple as possible, but not too simple.'
 * See the blog post: [Very Simple Menu R1]( http://www.jaanga.com/2014/02/very-simple-menu-r1.html )
 
-[Canvas and WebGL Lines Compared]( canvas-webgl-lines-compared/canvas-webgl-lines-compared.html )  
+[Canvas and WebGL Lines Compared]( canvas-webgl-lines-compared/index.html )  
 
 [Code Editor inside Blogger]( code-editor-inside-blogger/code-editor-inside-blogger.html )  
 [DAT.GUI User Controls]( dat.gui/dat.gui.html )  

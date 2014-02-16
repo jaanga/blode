@@ -33,12 +33,12 @@
 		rendererCanvas = new THREE.CanvasRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
 		rendererCanvas.setSize( 0.45 * window.innerWidth, 0.9 * window.innerHeight );
 		document.body.appendChild( rendererCanvas.domElement );
-		rendererCanvas.domElement.style.cssText = 'border: 1px solid #000000; left: 2%; position: absolute; top: 80px;';
+		rendererCanvas.domElement.style.cssText = 'border: 1px solid #000000; left: 2%; position: absolute; top: 80px; width: 45%;';
 
 		rendererWebGL = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
 		rendererWebGL.setSize( 0.45 * window.innerWidth, 0.9 * window.innerHeight );
 		document.body.appendChild( rendererWebGL.domElement );
-		rendererWebGL.domElement.style.cssText = 'border: 1px solid #000000; right: 2%; position: absolute; top: 80px;';
+		rendererWebGL.domElement.style.cssText = 'border: 1px solid #000000; right: 2%; position: absolute; top: 80px; width: 45%;';
 
 		scene = new THREE.Scene();
 

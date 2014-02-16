@@ -1,0 +1,142 @@
+﻿<!doctype html>
+<html lang=en>
+<head>
+<title></title>
+<meta charset=utf-8>
+</head>
+<body>
+
+<script src = ../../../../../git-repos/three.js/build/three.min.js ></script>
+<script src = ../../../../../git-repos/three.js/examples/js/controls/TrackballControls.js ></script>
+<script src = ../../../../../git-repos/three.js/examples/js/libs/stats.min.js ></script>
+
+<script src = http://mrdoob.github.io/three.js/build/three.min.js ></script>
+<script src = http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
+<script src = http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
+<script>
+	var info, renderer, scene, camera, controls, stats;
+
+	init();
+	animate();
+
+	function init() {
+		var css, geometry, material, mesh;
+
+		css = document.body.appendChild( document.createElement('style') );
+		css.innerHTML = 'body { font: 600 12pt monospace; margin: 0; overflow: hidden; text-align: center; }' +
+			'h1 a {text-decoration: none; }' +
+		'';
+
+		var info = document.body.appendChild( document.createElement( 'div' ) );
+		info.style.cssText = 'border: 0px solid red; position: absolute; top: 0px; width: 100% ';
+		info.innerHTML = '<h1 title="A very nice app indeed" >3D Polylines ~ ' +
+			'<a href=# title="Get help and info" onclick=help.style.display="block"; ><large>&#x24D8;</large></a></h1>' +
+			'<div id=menu >' +
+			'' +
+			'</div><br>' +
+			'<div id=touch style=display:none;height:' + window.innerHeight + 'px;width:100%; ></div>' +
+			'<div id=help onclick=help.style.display="none"; style=display:none;background-color:#ccc;opacity:0.7;left:0;margin:auto;padding:20px;position:absolute;right:0;top:200px;width:60%; >' +
+				'The basics.<br><br>' +
+				'<i>Note: Tested only in Google Chrome. May work in IE or FF.</i><br>' +
+				'<p>Trackball General Controls:<br>' +
+					'&bull; Rotate globe: Left mouse / press 1 finger<br>' +
+					'&bull; Zoom in current level: Mousewheel / two fingers<br>' +
+					'&bull; Drag globe: Right mouse / press 2 fingers<br>' +
+				'</p>' +
+/*
+				'&#10070; ' +
+				'<p>First Person General Controls:<br>' +
+					'&bull; WASD/cursor keys: four directions<br>' +
+					'&bull; RF/Page Up PageDn: move up / down<br>' +
+					'&bull; Mouse wheel only: speed up/slow down / down<br>' +
+					'&bull; Spacebar/mousewheel click: pause<br>' +
+					'&bull; Mouse/trackpad: update heading<br>' +
+				'</p>' +
+*/
+				'<a href=https://github.com/jaanga/cookbook/ target=_blank >Source code</a><br>' +
+				'<small>credits: <a href="http://threejs.org" target="_blank">three.js</a> - ' +
+				'<a href="http://khronos.org/webgl/" target="_blank">webgl</a> - ' +
+				'<a href="http://jaanga.github.io" target="_blank">jaanga</a><br>' +
+				'copyright &copy; 2013 jaanga authors ~ mit license</small><br><br>' +
+				'<i>Click anywhere in this message to hide...</i>' +
+			'</div>' +
+		'';
+
+		//var bits = menu.appendChild( document.createElement( 'div' ) );
+		//bits.innerHTML = 'menu';
+
+		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );
+		scene = new THREE.Scene();
+
+		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 5000 );
+		camera.position.set( 200, 200, 200 );
+		controls = new THREE.TrackballControls( camera, renderer.domElement );
+
+		stats = new Stats();
+		stats.domElement.style.cssText = 'position: absolute; top: 0px; zIndex: 100; ';
+		document.body.appendChild( stats.domElement );
+
+// axes
+		scene.add( new THREE.ArrowHelper( v(1, 0, 0), v(0, 0, 0), 30, 0xcc0000) );
+		scene.add( new THREE.ArrowHelper( v(0, 1, 0), v(0, 0, 0), 30, 0x00cc00) );
+		scene.add( new THREE.ArrowHelper( v(0, 0, 1), v(0, 0, 0), 30, 0x0000cc) );
+
+// ground plane
+		material = new THREE.MeshNormalMaterial();
+		geometry = new THREE.CubeGeometry( 200, 1, 200 );
+		mesh = new THREE.Mesh( geometry, material );
+		mesh.position.set( 0, -10, 0 );
+		scene.add( mesh );
+
+/*
+		var geometry = new THREE.Geometry();
+		geometry.vertices = [ v(-100, 0, 0), v(0, 100, 0), v(100, 0, 0) ];
+		material = new THREE.LineBasicMaterial( { color: 0x000000 } );
+		var line = new THREE.Line( geometry, material );
+		scene.add( line );
+*/
+		var points = [];
+		// points = [ v(-100, 0, 0), v(0, 50, 0), v( 100, 0, 0), v( 200, 50, 0), v( 300, 0, 0 ) ];
+
+		for (var i = 0; i < 100; i++) {
+			points.push( v( Math.random() * 200 - 100, Math.random() * 200, Math.random() * 200 - 100 ) );
+		}
+
+		var radius = 5;
+		var faces = 16;
+
+		var length;
+		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading } );
+
+		for (var i = 0, len = points.length; i < len; i++) {
+			geometry = new THREE.SphereGeometry( radius, faces, faces );
+			mesh = new THREE.Mesh( geometry, material );
+			mesh.position = points[i];
+			scene.add( mesh );
+
+			if ( i + 1 === len ) return; 
+			geometry = new THREE.CylinderGeometry( radius, radius, 1, faces );
+			geometry.applyMatrix( new THREE.Matrix4().makeRotationX( Math.PI / -2 ) );
+			mesh = new THREE.Mesh( geometry, material );
+			mesh.position = points[i].clone();
+			mesh.lookAt( points[ 1 + i ] );
+			length = points[i].distanceTo( points[1 + i] );
+			mesh.scale.set( 1, 1, length);
+			mesh.translateZ( 0.5 * length );
+			scene.add( mesh );
+		}
+	}
+
+	function animate() {
+		requestAnimationFrame( animate );
+		controls.update();
+		renderer.render( scene, camera );
+		stats.update();
+	}
+
+	function v( x, y, z ){ return new THREE.Vector3( x, y, z ); }
+</script>
+</body>
+</html>

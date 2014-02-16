@@ -23,7 +23,7 @@
 		info.style.cssText = 'position: absolute; width: 100%; ';
 		info.innerHTML = info.txt = '<h1 style=margin:0; >Canvas and WebGL Lines Compared</h1>' +
 			'Use your pointing device to pan, zoom and rotate &nbsp; ' +
-			'<input type=range min=1 max=20 step=1 value=5 onchange=drawIt(this.value); ></input>' +
+			'<input type=range min=1 max=20 step=1 value=5 onchange="drawIt(this.value);" ></input>' +
 			' &nbsp; Thanks to: ' +
 			'<a href="http://three.js.org" target="_blank">Three.js</a> - ' +
 			'<a href="http://www.khronos.org/webgl/" target="_blank">WebGL</a> - ' +
@@ -49,23 +49,25 @@
 
 		drawIt( 5 );
 
-		function drawIt( width) {
-			if ( lines ) { scene.remove( lines ) }
-			lines = new THREE.Object3D();
-			scene.add( lines )
 
-			var line1 = [ v(-3,3,0), v(-2,3,0), v(-1,3,0), v(0,3,0), v(1,3,0), v(2,3,0), v(3,3,0) ];
-			var line2 = [ v(0,-3,-3), v(0,-3,-2), v(0,-3,-1), v(0,-3,0), v(0,-3,1), v(0,-3,2), v(0,-3,3) ];
+	}
 
-			material = new THREE.LineBasicMaterial( { color: 0xff0000, linewidth: width } );
+	function drawIt( width) {
+		if ( lines ) { scene.remove( lines ) }
+		lines = new THREE.Object3D();
+		scene.add( lines )
 
-			for (var i = 0; i < 7; i++) {
-				for (var j = 0; j < 7; j++) {
-					geometry = new THREE.Geometry();
-					geometry.vertices = [ line1[i], line2[j] ];
-					line = new THREE.Line( geometry, material );
-					lines.add( line );
-				}
+		var line1 = [ v(-3,3,0), v(-2,3,0), v(-1,3,0), v(0,3,0), v(1,3,0), v(2,3,0), v(3,3,0) ];
+		var line2 = [ v(0,-3,-3), v(0,-3,-2), v(0,-3,-1), v(0,-3,0), v(0,-3,1), v(0,-3,2), v(0,-3,3) ];
+
+		material = new THREE.LineBasicMaterial( { color: 0xff0000, linewidth: width } );
+
+		for (var i = 0; i < 7; i++) {
+			for (var j = 0; j < 7; j++) {
+				geometry = new THREE.Geometry();
+				geometry.vertices = [ line1[i], line2[j] ];
+				line = new THREE.Line( geometry, material );
+				lines.add( line );
 			}
 		}
 	}

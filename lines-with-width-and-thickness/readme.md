@@ -2,14 +2,24 @@ Lines with Width and Thickness Read Me
 =======================================
 
 ### Live Demo
+
+Sphere and Cyliner Polylines
 <iframe src="http://jaanga.github.io/blode/lines-with-width-and-thickness/sphere-and-cylinder-polylines/sphere-and-cylinder-polylines.html" width=100% height=500px class='overview' >
 There is an `iframe` here. It is not visible when viewed on github.com/jaanga. To view, please go to jaanga.github.io. See 'Project Links' just below.
 </iframe>
 
 Run the demo: [ sphere-and-cylinder-polylines]( http://jaanga.github.io/blode/lines-with-width-and-thickness/sphere-and-cylinder-polylines/sphere-and-cylinder-polylines.html )
 
+Cubes Polylines
+<iframe src="http://jaanga.github.io/blode/lines-with-width-and-thickness/cubes-polylines/cubes-polylines.html" width=100% height=500px class='overview' >
+There is an `iframe` here. It is not visible when viewed on github.com/jaanga. To view, please go to jaanga.github.io. See 'Project Links' just below.
+</iframe>
+
+Run the demo: [ cubes-polylines]( http://jaanga.github.io/blode/lines-with-width-and-thickness/cubes-polylines/cubes-polylines.html )
+
+
 ### Concept
-Lines in 3D with a radius
+Lines in 3D with a radius or with width and thickness
 
 ### Project Links
 

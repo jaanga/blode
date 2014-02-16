@@ -14,6 +14,10 @@
 	<a href=JavaScript:displayPage("canvas-webgl-lines-compared/readme.md",def); >Canvas and WebGL Lines Compared Read Me</a>
 </p>
 
+
+<p id=lww >
+	<a href=JavaScript:displayPage("lines-with-width-and-thickness/readme.md",lww); >Lines with Width and Thickness Read Me</a>
+</p>
 <!--
 
 <p id=te >
